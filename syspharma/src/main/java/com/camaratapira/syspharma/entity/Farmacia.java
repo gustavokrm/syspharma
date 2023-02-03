@@ -66,7 +66,8 @@ public class Farmacia {
 	public void setTelefonefarmacia(String telefonefarmacia) {
 		this.telefonefarmacia = telefonefarmacia;
 	}
-
+	
+	// para poder ficar bonitinho na hora de ler os resultados
 	public Farmacia(String nomefarmacia, String cnpjfarmacia, String nomeresponsavel, String telefonefarmacia) {
 		this.nomefarmacia = nomefarmacia;
 		this.cnpjfarmacia = cnpjfarmacia;
