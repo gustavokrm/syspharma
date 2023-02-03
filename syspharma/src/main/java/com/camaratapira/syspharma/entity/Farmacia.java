@@ -24,6 +24,7 @@ public class Farmacia {
 	@Column(name="telefonefarmacia")
 	private String telefonefarmacia;
 	
+	// método construtor necessário para que o Hibernate funcione
 	public Farmacia() {}
 	
 	public int getIdfarmacia() {
