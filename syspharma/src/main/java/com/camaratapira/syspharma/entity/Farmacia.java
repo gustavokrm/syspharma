@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 public class Farmacia {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // identidade, pois o modo de geração auto requer classes adicionais
 	@Column(name="idfarmacia")
 	private int idfarmacia;
 	@Column(name="nomefarmacia")
