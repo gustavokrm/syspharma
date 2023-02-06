@@ -35,7 +35,10 @@ public class Funcao {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idcargo")
 	private Cargo idcargo;
-		
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idservidor")
+	private Servidor idservidor;
 	
 	public int getIdfuncao() {
 		return idfuncao;
