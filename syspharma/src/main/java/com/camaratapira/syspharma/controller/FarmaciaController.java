@@ -7,12 +7,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,6 +28,7 @@ public class FarmaciaController {
 	@Autowired
 	FarmaciaRepository farmaciaRepository;
 	
+	// lista todas as farmácias cadastradas
 	@GetMapping("/farmacia")
 	public ResponseEntity<List<Farmacia>> getAllFarmacias(@RequestParam(required=false)String nomefarmacia){
 		List<Farmacia> farmacia = new ArrayList<Farmacia>();
@@ -46,7 +49,8 @@ public class FarmaciaController {
 		
 	}
 	
-	@GetMapping("/farmacia/{idfarmacia}")
+	// lista as farmácias pelo idfarmacia
+	@GetMapping("/listarfarmacia/{idfarmacia}")
 	public ResponseEntity<Farmacia> getFarmaciaById(@PathVariable("idfarmacia") int idfarmacia){
 		Optional<Farmacia> farmaciaData = farmaciaRepository.findById(idfarmacia);
 		
@@ -55,6 +59,16 @@ public class FarmaciaController {
 		else 
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
+	
+	/* cadastra uma farmácia. Necessário enviar a requisição em formato JSON, tal qual:
+	 * {
+    "nomefarmacia":"Farmacia do Renan",
+    "cnpjfarmacia":"23369515000169",
+    "nomeresponsavel":"Renan",
+    "telefonefarmacia":"3436331161"
+	} 
+	para que o sistema possa compreender a requisição. Caso não seja nesse formato, ele ativará uma exceção.
+	 */
 	
 	@PostMapping("/criarfarmacia")
 	public ResponseEntity<Farmacia> createFarmacia(@RequestBody Farmacia farmacia){
@@ -68,7 +82,9 @@ public class FarmaciaController {
 		
 	}
 	
-	@PutMapping("/atualizar/{idfarmacia}")
+	/* Atualiza os dados da farmácia. Também é necessário enviar a requisição em formato JSON tal qual o último comentário 
+	 * TO-DO melhorar isso aqui */
+	@PutMapping("/atualizarfarmacia/{idfarmacia}")
 	public ResponseEntity<Farmacia> updateFarmacia(@PathVariable("idfarmacia") int idfarmacia, @RequestBody Farmacia farmacia){
 		Optional<Farmacia> farmaciaData = farmaciaRepository.findById(idfarmacia);
 		
@@ -83,6 +99,16 @@ public class FarmaciaController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 				
+	}
+	
+	@DeleteMapping("/deletarfarmacia/{idfarmacia}") /* é preciso adicionar a anotação @RequestBody para que ele possa achar o idfarmacia */
+	public ResponseEntity<HttpStatus> deleteFarmacia(@PathVariable("idfarmacia") int idfarmacia, @RequestBody Farmacia farmacia){
+		try {
+			farmaciaRepository.deleteById(idfarmacia);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	
