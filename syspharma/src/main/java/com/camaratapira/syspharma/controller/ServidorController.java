@@ -2,6 +2,8 @@ package com.camaratapira.syspharma.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.camaratapira.syspharma.entity.Funcao;
 import com.camaratapira.syspharma.entity.Servidor;
 import com.camaratapira.syspharma.repositories.FuncaoRepository;
 import com.camaratapira.syspharma.repositories.ServidorRepository;
@@ -34,11 +38,8 @@ public class ServidorController {
 		List<Servidor> servidor = new ArrayList<Servidor>();
 		
 		try {
-			if(nomeservidor == null)
 				servidorRepository.findAll().forEach(servidor::add);
-			else
-				servidorRepository.findBynomeservidor(nomeservidor).forEach(servidor::add);
-			if(servidor.isEmpty()) {
+				if(servidor.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 			return new ResponseEntity<>(servidor, HttpStatus.OK);
@@ -47,6 +48,16 @@ public class ServidorController {
 			
 		}
 		
+	}
+	
+	@GetMapping("/listarservidor/{idservidor}")
+	public ResponseEntity<Servidor> getservidorById(@PathVariable("idservidor") int idservidor){
+		Optional<Servidor> servidorData = servidorRepository.findById(idservidor);
+		
+		if(servidorData.isPresent())
+			return new ResponseEntity<>(servidorData.get(), HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 	@PostMapping("/inserirservidor")
