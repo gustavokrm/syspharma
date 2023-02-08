@@ -8,5 +8,5 @@ import com.camaratapira.syspharma.entity.Funcao;
 
 public interface FuncaoRepository extends CrudRepository<Funcao, Integer> {
 	List<Funcao> findByidfuncao(int idfuncao);
-	List<Funcao> findBynomefuncao(String nomefuncao);
+	List<Funcao> findByidcargo(int idcargo);
 }

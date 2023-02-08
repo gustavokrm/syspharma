@@ -5,34 +5,36 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "servidor")/*
-@NamedStoredProcedureQueries({
-	@NamedStoredProcedureQuery(name = "insere_servidor", procedureName = "insere_servidor"),
-	@NamedStoredProcedureQuery(name = "desativa_servidor", procedureName = "desativa_servidor")
-})*/
+@Table(name = "servidor")
 public class Servidor {
 	
 	public Servidor(){}
 	
 	public Servidor(String nomeservidor, String cpf, String rg, double salario, boolean ativo) {
-		
+		super();
 		this.nomeservidor = nomeservidor;
-		this.rg = rg;
 		this.cpf = cpf;
+		this.rg = rg;
 		this.salario = salario;
 		this.ativo = ativo;
 	}
 	
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "idfuncao")
-	private List<Funcao> nomeFuncao;
 	
+	@ManyToOne
+	@JoinColumn(name = "idfuncao")
+	private Funcao funcao;
+	
+
 	public int getIdservidor() {
 		return idservidor;
 	}
@@ -71,6 +73,7 @@ public class Servidor {
 	}
 	
 	@Id
+	@Column(name = "idservidor")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idservidor;
 	
@@ -88,5 +91,7 @@ public class Servidor {
 	
 	@Column(name = "ativo")
 	private boolean ativo;
+	
+
 	
 }
