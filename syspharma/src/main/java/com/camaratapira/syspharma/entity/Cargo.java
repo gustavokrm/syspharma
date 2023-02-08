@@ -27,12 +27,9 @@ public class Cargo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idcargo")
 	private int idcargo;
+	
 	@Column(name = "descricaocargo")
 	private String descricaocargo;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idfuncao")
-	private List<Funcao> nomefuncao;
-	
 	
 	public int getIdcargo() {
 		return idcargo;
