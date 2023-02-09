@@ -28,7 +28,7 @@ public class FarmaciaController {
 	FarmaciaRepository farmaciaRepository;
 	
 	// lista todas as farmácias cadastradas
-	@GetMapping("/farmacia")
+	@GetMapping("/farmacia/listartodos")
 	public ResponseEntity<List<Farmacia>> getAllFarmacias(@RequestParam(required=false)String nomefarmacia){
 		List<Farmacia> farmacia = new ArrayList<Farmacia>();
 		
@@ -46,7 +46,7 @@ public class FarmaciaController {
 	}
 	
 	// lista as farmácias pelo idfarmacia
-	@GetMapping("/listarfarmacia/{idfarmacia}")
+	@GetMapping("/farmacia/listarfarmacia/{idfarmacia}")
 	public ResponseEntity<Farmacia> getFarmaciaById(@PathVariable("idfarmacia") int idfarmacia){
 		Optional<Farmacia> farmaciaData = farmaciaRepository.findById(idfarmacia);
 		
@@ -66,7 +66,7 @@ public class FarmaciaController {
 	para que o sistema possa compreender a requisição. Caso não seja nesse formato, ele ativará uma exceção.
 	 */
 	
-	@PostMapping("/criarfarmacia")
+	@PostMapping("/farmacia/criarfarmacia")
 	public ResponseEntity<Farmacia> createFarmacia(@RequestBody Farmacia farmacia){
 		try {
 			Farmacia _farmacia = farmaciaRepository.save(new Farmacia(farmacia.getNomefarmacia(), farmacia.getCnpjfarmacia(), farmacia.getNomeresponsavel(), farmacia.getTelefonefarmacia()));
@@ -80,7 +80,7 @@ public class FarmaciaController {
 	
 	/* Atualiza os dados da farmácia. Também é necessário enviar a requisição em formato JSON tal qual o último comentário 
 	 * TO-DO melhorar isso aqui */
-	@PutMapping("/atualizarfarmacia/{idfarmacia}")
+	@PutMapping("/farmacia/atualizarfarmacia/{idfarmacia}")
 	public ResponseEntity<Farmacia> updateFarmacia(@PathVariable("idfarmacia") int idfarmacia, @RequestBody Farmacia farmacia){
 		Optional<Farmacia> farmaciaData = farmaciaRepository.findById(idfarmacia);
 		
@@ -97,7 +97,7 @@ public class FarmaciaController {
 				
 	}
 	
-	@DeleteMapping("/deletarfarmacia/{idfarmacia}") /* é preciso adicionar a anotação @RequestBody para que ele possa achar o idfarmacia */
+	@DeleteMapping("/farmacia/deletarfarmacia/{idfarmacia}") /* é preciso adicionar a anotação @RequestBody para que ele possa achar o idfarmacia */
 	public ResponseEntity<HttpStatus> deleteFarmacia(@PathVariable("idfarmacia") int idfarmacia, @RequestBody Farmacia farmacia){
 		try {
 			farmaciaRepository.deleteById(idfarmacia);
