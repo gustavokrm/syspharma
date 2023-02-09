@@ -33,7 +33,7 @@ public class ServidorController {
 	FuncaoRepository funcaoRepository;
 		
 	// lista todos os servidores
-	@GetMapping("/servidor/listatodos")
+	@GetMapping("/servidor/listartodos")
 	public ResponseEntity<List<Servidor>> getAllServidors(@RequestParam(required=false)String nomeservidor){
 		List<Servidor> servidor = new ArrayList<Servidor>();
 		
