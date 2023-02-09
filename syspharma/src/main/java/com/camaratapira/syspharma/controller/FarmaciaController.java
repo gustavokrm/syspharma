@@ -33,7 +33,7 @@ public class FarmaciaController {
 		List<Farmacia> farmacia = new ArrayList<Farmacia>();
 		
 		try {
-				farmaciaRepository.findBynomefarmacia(nomefarmacia).forEach(farmacia::add);
+				farmaciaRepository.findAll().forEach(farmacia::add);
 			if(farmacia.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
