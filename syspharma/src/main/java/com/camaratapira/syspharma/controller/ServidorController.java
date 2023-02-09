@@ -24,6 +24,7 @@ import com.camaratapira.syspharma.repositories.FuncaoRepository;
 import com.camaratapira.syspharma.repositories.ServidorRepository;
 
 
+
 @RestController
 @RequestMapping("/api")
 public class ServidorController {
@@ -61,17 +62,16 @@ public class ServidorController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
-	/*@PostMapping("/criarservidor")
-	public ResponseEntity<Servidor> createServidor(@PathVariable("servidor") int idservidor,
-			@RequestBody Servidor servidor){
+	@PostMapping("/criarservidor")
+	public ResponseEntity<Servidor> createServidor(@RequestBody Servidor servidor){
 		try {
-			Servidor _servidor = servidorRepository.save(new Servidor(servidor.getNomeservidor(), servidor.getCpf(), servidor.getRg(), servidor.getSalario(), servidor.isAtivo()));
+			Servidor _servidor = servidorRepository.save(servidor);
 			return new ResponseEntity<>(_servidor, HttpStatus.CREATED);
 		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-	}*/
+	}
 	
 	@DeleteMapping("/deletarservidor/{idservidor}") /* é preciso adicionar a anotação @RequestBody para que ele possa achar o idfarmacia */
 	public ResponseEntity<HttpStatus> deleteServidor(@PathVariable("idservidor") int idservidor, @RequestBody Servidor servidor){
