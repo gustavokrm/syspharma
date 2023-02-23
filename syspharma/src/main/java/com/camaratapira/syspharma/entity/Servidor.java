@@ -1,12 +1,16 @@
 package com.camaratapira.syspharma.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +28,7 @@ public class Servidor {
 		this.ativo = ativo;
 	}
 	
+
 	
 	@ManyToOne()
 	@JoinColumn(name = "idfuncao")
@@ -33,15 +38,16 @@ public class Servidor {
 	public Funcao getFuncao() {
 		return funcao;
 	}
+	
 
 	public void setFuncao(Funcao funcao) {
 		this.funcao = funcao;
 	}
 
-	public int getIdservidor() {
+	public Long getIdservidor() {
 		return idservidor;
 	}
-	public void setIdservidor(int idservidor) {
+	public void setIdservidor(Long idservidor) {
 		this.idservidor = idservidor;
 	}
 	public String getNomeservidor() {
@@ -78,7 +84,7 @@ public class Servidor {
 	@Id
 	@Column(name = "idservidor")
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // outras estratégias precisam de tabelas específicas no Banco de dados
-	private int idservidor;
+	private Long idservidor;
 	
 	@Column(name = "nomeservidor")
 	private String nomeservidor;
