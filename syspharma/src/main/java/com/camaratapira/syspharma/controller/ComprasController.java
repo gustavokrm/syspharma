@@ -1,8 +1,6 @@
 package com.camaratapira.syspharma.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,13 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,9 +18,6 @@ import com.camaratapira.syspharma.entity.Servidor;
 import com.camaratapira.syspharma.repositories.ComprasRepository;
 import com.camaratapira.syspharma.repositories.FarmaciaRepository;
 import com.camaratapira.syspharma.repositories.ServidorRepository;
-
-import jakarta.websocket.Session;
-
 
 @RestController
 @RequestMapping("/api")
@@ -73,9 +63,8 @@ public class ComprasController {
     	else
     		return new ResponseEntity<List<Compras>>(comprasData, HttpStatus.OK);
     }
-    
-    // TODO list sales by employee
-    
+   
+  
     // TODO deduce from saldoservidor every time a sale is made
     // TODO if saldoservidor == 0 or less than valorcompra then throw exception
     
