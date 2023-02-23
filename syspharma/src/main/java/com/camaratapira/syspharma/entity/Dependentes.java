@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "dependentes")
+
 public class Dependentes {
 	
 	@Id

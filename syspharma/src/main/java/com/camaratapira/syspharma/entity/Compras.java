@@ -2,6 +2,8 @@ package com.camaratapira.syspharma.entity;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,6 +27,7 @@ public class Compras {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcompras")
+    @JsonIgnore
     private Integer idcompras;
     
     @Column(name = "valorcompra")
