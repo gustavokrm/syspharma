@@ -3,8 +3,6 @@ package com.camaratapira.syspharma.entity;
 import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,15 +34,15 @@ public class Compras {
     @Column(name = "datacompra")
     private Timestamp datacompra;
         	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
     @JoinColumn(name = "idservidor")
     private Servidor idservidor;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "iddependente")
     private Dependentes dependentes;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "idfarmacia")
     private Farmacia farmacia;
     

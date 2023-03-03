@@ -25,7 +25,6 @@ public class Funcao {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonIgnore
 	private int idfuncao;
 	
 	@Column(name = "nomefuncao")

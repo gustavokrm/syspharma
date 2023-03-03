@@ -1,7 +1,5 @@
 package com.camaratapira.syspharma.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -80,7 +78,6 @@ public class Servidor {
 	@Id
 	@Column(name = "idservidor")
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // outras estratégias precisam de tabelas específicas no Banco de dados
-	@JsonIgnore
 	private Long idservidor;
 	
 	@Column(name = "nomeservidor")

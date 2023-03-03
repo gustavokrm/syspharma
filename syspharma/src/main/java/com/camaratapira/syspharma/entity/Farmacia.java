@@ -1,7 +1,5 @@
 package com.camaratapira.syspharma.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +14,6 @@ public class Farmacia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // identidade, pois o modo de geração auto requer classes adicionais
 	@Column(name="idfarmacia")
-	@JsonIgnore
 	private int idfarmacia;
 	@Column(name="nomefarmacia")
 	private String nomefarmacia;

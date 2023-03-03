@@ -23,7 +23,6 @@ public class Cargo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idcargo")
-	@JsonIgnore
 	private int idcargo;
 	
 	@Column(name = "descricaocargo")
