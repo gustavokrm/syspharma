@@ -2,31 +2,21 @@ package com.camaratapira.syspharma.entity;
 
 import java.sql.Timestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Formula;
+
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.NamedStoredProcedureQuery;
-import jakarta.persistence.ParameterMode;
-import jakarta.persistence.StoredProcedureParameter;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "compras")
-@NamedStoredProcedureQuery(name = "Compras.lista_compras", procedureName = "lista_compras", parameters = {
-		@StoredProcedureParameter(mode = ParameterMode.IN, name = "sp_idservidor", type = Integer.class)
-})
 public class Compras {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcompras")
-    @JsonIgnore
-    private Integer idcompras;
+    private int idcompras;
     
     @Column(name = "valorcompra")
     private double valorcompra;
@@ -47,8 +37,8 @@ public class Compras {
     private Farmacia farmacia;
     
     public Compras(){}
-
-    public Servidor getServidor() {
+       
+	public Servidor getServidor() {
         return idservidor;
     }
 
@@ -83,6 +73,7 @@ public class Compras {
     }
     public void setValorcompra(double valorcompra) {
         this.valorcompra = valorcompra;
+        
     }
     public Timestamp getDatacompra() {
         return datacompra;
@@ -93,6 +84,6 @@ public class Compras {
     public Compras(double valorcompra, Timestamp datacompra) {
         this.valorcompra = valorcompra;
         this.datacompra = datacompra;
-    }
-
+    } 
+       
 }
