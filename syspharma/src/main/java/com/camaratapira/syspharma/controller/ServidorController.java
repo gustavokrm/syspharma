@@ -33,7 +33,10 @@ public class ServidorController {
 	ServidorRepository servidorRepository;
 	@Autowired
 	FuncaoRepository funcaoRepository;
-		
+
+	
+	
+	
 	// lista todos os servidores
 	@GetMapping("/servidor/listartodos")
 	public ResponseEntity<List<Servidor>> getAllServidors(@RequestParam(required=false)String nomeservidor){
@@ -65,8 +68,9 @@ public class ServidorController {
 	@PostMapping("/servidor/criarservidor")
 	public ResponseEntity<Servidor> createServidor(@RequestBody Servidor servidor){
 		try {
-			Servidor _servidor = servidorRepository.save(servidor);
-			return new ResponseEntity<>(_servidor, HttpStatus.CREATED);
+			servidorRepository.save(servidor);
+			//servidorService.createNewServidor(servidor);
+			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<Servidor>(null, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);

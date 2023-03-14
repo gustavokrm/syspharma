@@ -76,9 +76,7 @@ public class ComprasController {
     @PostMapping("/compras/realizarcompra")
     public ResponseEntity<Compras> createCompras(@RequestBody Compras compras){
 		try {
-			
-			comprasRepository.save(compras);
-			
+			comprasRepository.save(compras);			
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();

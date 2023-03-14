@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -38,10 +39,10 @@ public class Servidor {
 		this.funcao = funcao;
 	}
 
-	public Long getIdservidor() {
+	public Integer getIdservidor() {
 		return idservidor;
 	}
-	public void setIdservidor(Long idservidor) {
+	public void setIdservidor(Integer idservidor) {
 		this.idservidor = idservidor;
 	}
 	public String getNomeservidor() {
@@ -78,7 +79,7 @@ public class Servidor {
 	@Id
 	@Column(name = "idservidor")
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // outras estratégias precisam de tabelas específicas no Banco de dados
-	private Long idservidor;
+	private Integer idservidor;
 	
 	@Column(name = "nomeservidor")
 	private String nomeservidor;
@@ -94,7 +95,5 @@ public class Servidor {
 	
 	@Column(name = "ativo")
 	private boolean ativo;
-	
-
 	
 }

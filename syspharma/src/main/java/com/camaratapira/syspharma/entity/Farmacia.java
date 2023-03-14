@@ -14,7 +14,7 @@ public class Farmacia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // identidade, pois o modo de geração auto requer classes adicionais
 	@Column(name="idfarmacia")
-	private int idfarmacia;
+	private Integer idfarmacia;
 	@Column(name="nomefarmacia")
 	private String nomefarmacia;
 	@Column(name="cnpjfarmacia")
@@ -27,11 +27,11 @@ public class Farmacia {
 	// método construtor necessário para que o Hibernate funcione
 	public Farmacia() {}
 	
-	public int getIdfarmacia() {
+	public Integer getIdfarmacia() {
 		return idfarmacia;
 	}
 
-	public void setIdfarmacia(int idfarmacia) {
+	public void setIdfarmacia(Integer idfarmacia) {
 		this.idfarmacia = idfarmacia;
 	}
 
