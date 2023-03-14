@@ -76,7 +76,19 @@ public class ComprasController {
     @PostMapping("/compras/realizarcompra")
     public ResponseEntity<Compras> createCompras(@RequestBody Compras compras){
 		try {
-			comprasRepository.save(compras);			
+			SaldoServidor saldo = new SaldoServidor();
+			double valorcompra = compras.getValorcompra();
+			System.out.println(valorcompra);
+			double sal = saldo.getSaldo(); // saldo vem nulo
+			System.out.println(sal);
+			double total = sal - valorcompra;
+			if(sal < valorcompra) {
+				System.out.println("Saldo insuficiente");
+			} else {
+				saldo.setSaldo(total);
+				comprasRepository.save(compras);
+			}
+			
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();

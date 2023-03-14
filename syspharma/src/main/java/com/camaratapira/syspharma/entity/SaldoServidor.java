@@ -1,7 +1,6 @@
 package com.camaratapira.syspharma.entity;
 
 import org.hibernate.annotations.Formula;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +19,7 @@ public class SaldoServidor {
 	private String nomeservidor;
 	@Formula("(select (s.salario * 30 / 100) from Servidor s)")
 	private double saldo;
-	
+			
 	public SaldoServidor(){}
 		
 	public Integer getIdsaldo() {
@@ -60,14 +59,4 @@ public class SaldoServidor {
 		this.servidor = servidor;
 	}
 	
-	/*public double salvarSaldo(Servidor servidor) {
-		
-		SaldoServidor sal = new SaldoServidor();
-		double saldo = servidor.getSalario();
-		double total = saldo * 30 / 100;
-		sal.setIdsaldo(idsaldo);
-		sal.setNomeservidor(nomeservidor);
-		sal.setSaldo(total);
-		return total;
-	}*/
 }

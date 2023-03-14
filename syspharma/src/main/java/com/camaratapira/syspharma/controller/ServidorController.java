@@ -33,9 +33,6 @@ public class ServidorController {
 	ServidorRepository servidorRepository;
 	@Autowired
 	FuncaoRepository funcaoRepository;
-
-	
-	
 	
 	// lista todos os servidores
 	@GetMapping("/servidor/listartodos")

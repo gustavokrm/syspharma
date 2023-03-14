@@ -87,5 +87,6 @@ public class Compras {
         this.valorcompra = valorcompra;
         this.datacompra = datacompra;
     } 
-             
+    
+                
 }
