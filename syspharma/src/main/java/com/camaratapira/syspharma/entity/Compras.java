@@ -1,7 +1,6 @@
 package com.camaratapira.syspharma.entity;
 
 import java.sql.Timestamp;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,7 +37,7 @@ public class Compras {
     @JoinColumn(name = "idfarmacia")
     private Farmacia farmacia;
     
-    public Compras(){}
+   	public Compras(){}
        
 	public Servidor getServidor() {
         return idservidor;
@@ -83,25 +82,18 @@ public class Compras {
     public void setDatacompra(Timestamp datacompra) {
         this.datacompra = datacompra;
     }
-    public Compras(double valorcompra, Timestamp datacompra) {
-        this.valorcompra = valorcompra;
-        this.datacompra = datacompra;
-    } 
-    
-       
-	/*public double addSaldo() {
 
-		double sal = saldo.getSaldo();
-		double val = getValorcompra();
+	public Compras(int idcompras, double valorcompra, Timestamp datacompra, Servidor idservidor,
+			Dependentes dependentes, Farmacia farmacia) {
+		super();
+		this.idcompras = idcompras;
+		this.valorcompra = valorcompra;
+		this.datacompra = datacompra;
+		this.idservidor = idservidor;
+		this.dependentes = dependentes;
+		this.farmacia = farmacia;
 		
-		if(sal < val) {
-			System.out.println("Saldo insuficiente");
-			return sal;
-		} else {
-			double total = sal - val;
-			return total;
-		}
-
-	}*/
+	}
+    
                 
 }

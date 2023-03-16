@@ -66,7 +66,6 @@ public class ServidorController {
 	@PostMapping("/servidor/criarservidor")
 	public ResponseEntity<Servidor> createServidor(@RequestBody Servidor servidor){
 		try {
-			//servidorRepository.save(servidor);
 			servidorService.addServidor(servidor);
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {

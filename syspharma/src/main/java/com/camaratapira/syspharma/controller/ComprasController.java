@@ -17,6 +17,7 @@ import com.camaratapira.syspharma.entity.*;
 import com.camaratapira.syspharma.repositories.ComprasRepository;
 import com.camaratapira.syspharma.repositories.FarmaciaRepository;
 import com.camaratapira.syspharma.repositories.ServidorRepository;
+import com.camaratapira.syspharma.service.ComprasService;
 
 
 @RestController
@@ -29,6 +30,8 @@ public class ComprasController {
     ServidorRepository servidorRepository;
     @Autowired
     FarmaciaRepository farmaciaRepository;
+    @Autowired
+    ComprasService comprasService;
          
     @GetMapping("/compras/listartodos")
     public ResponseEntity<List<Compras>> getAllCompras(@RequestParam(required=false) Integer idcompras){
@@ -66,32 +69,13 @@ public class ComprasController {
     		return new ResponseEntity<List<Compras>>(comprasData, HttpStatus.OK);
     }
    
-    // TODO deduce from saldoservidor every time a sale is made
-    // TODO if saldoservidor == 0 or less than valorcompra then throw exception
     // When using @JsonIgnore annotation, spring boot gets confused and can't find anything, and it throws an error
     
     @PostMapping("/compras/realizarcompra")
     public ResponseEntity<Compras> createCompras(@RequestBody Compras compras){
 		try {
 			
-			// TODO puxar o saldo do servidor de alguma forma, talvez 
-			// através do método Optional servidorData = servidorRepository.findById(idservidor);
-			
-			/*Servidor saldo = new Servidor();
-			
-			double valorcompra = compras.getValorcompra();
-			System.out.println(valorcompra);
-						
-			double sal = saldo.getSaldo(); // saldo vem nulo
-			System.out.println(sal);
-			
-			if(sal < valorcompra) {
-				System.out.println("Saldo insuficiente");
-			} else {
-				double total = sal - valorcompra;
-				saldo.setSaldo(total);
-				comprasRepository.save(compras);
-			}*/
+			comprasService.addCompras(compras);
 			
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {
