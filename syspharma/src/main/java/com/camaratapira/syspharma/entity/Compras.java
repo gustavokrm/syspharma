@@ -88,5 +88,20 @@ public class Compras {
         this.datacompra = datacompra;
     } 
     
+       
+	/*public double addSaldo() {
+
+		double sal = saldo.getSaldo();
+		double val = getValorcompra();
+		
+		if(sal < val) {
+			System.out.println("Saldo insuficiente");
+			return sal;
+		} else {
+			double total = sal - val;
+			return total;
+		}
+
+	}*/
                 
 }

@@ -17,7 +17,7 @@ import com.camaratapira.syspharma.entity.*;
 import com.camaratapira.syspharma.repositories.ComprasRepository;
 import com.camaratapira.syspharma.repositories.FarmaciaRepository;
 import com.camaratapira.syspharma.repositories.ServidorRepository;
-import jakarta.persistence.EntityManager;
+
 
 @RestController
 @RequestMapping("/api")
@@ -29,10 +29,7 @@ public class ComprasController {
     ServidorRepository servidorRepository;
     @Autowired
     FarmaciaRepository farmaciaRepository;
-    @Autowired
-    EntityManager em;
-    
-      
+         
     @GetMapping("/compras/listartodos")
     public ResponseEntity<List<Compras>> getAllCompras(@RequestParam(required=false) Integer idcompras){
 		List<Compras> compras = new ArrayList<Compras>();		
@@ -76,18 +73,25 @@ public class ComprasController {
     @PostMapping("/compras/realizarcompra")
     public ResponseEntity<Compras> createCompras(@RequestBody Compras compras){
 		try {
-			SaldoServidor saldo = new SaldoServidor();
+			
+			// TODO puxar o saldo do servidor de alguma forma, talvez 
+			// através do método Optional servidorData = servidorRepository.findById(idservidor);
+			
+			/*Servidor saldo = new Servidor();
+			
 			double valorcompra = compras.getValorcompra();
 			System.out.println(valorcompra);
+						
 			double sal = saldo.getSaldo(); // saldo vem nulo
 			System.out.println(sal);
-			double total = sal - valorcompra;
+			
 			if(sal < valorcompra) {
 				System.out.println("Saldo insuficiente");
 			} else {
+				double total = sal - valorcompra;
 				saldo.setSaldo(total);
 				comprasRepository.save(compras);
-			}
+			}*/
 			
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {

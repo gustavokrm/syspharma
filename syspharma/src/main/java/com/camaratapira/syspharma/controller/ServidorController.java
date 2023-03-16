@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,11 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.camaratapira.syspharma.entity.Servidor;
 import com.camaratapira.syspharma.repositories.FuncaoRepository;
 import com.camaratapira.syspharma.repositories.ServidorRepository;
+import com.camaratapira.syspharma.service.ServidorService;
 
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api")
 public class ServidorController {
 	
@@ -33,6 +32,8 @@ public class ServidorController {
 	ServidorRepository servidorRepository;
 	@Autowired
 	FuncaoRepository funcaoRepository;
+	@Autowired
+	ServidorService servidorService;
 	
 	// lista todos os servidores
 	@GetMapping("/servidor/listartodos")
@@ -65,8 +66,8 @@ public class ServidorController {
 	@PostMapping("/servidor/criarservidor")
 	public ResponseEntity<Servidor> createServidor(@RequestBody Servidor servidor){
 		try {
-			servidorRepository.save(servidor);
-			//servidorService.createNewServidor(servidor);
+			//servidorRepository.save(servidor);
+			servidorService.addServidor(servidor);
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();

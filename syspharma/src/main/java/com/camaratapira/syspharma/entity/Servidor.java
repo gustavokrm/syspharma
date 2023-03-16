@@ -13,68 +13,6 @@ import jakarta.persistence.Table;
 @Table(name = "servidor")
 public class Servidor {
 	
-	public Servidor(){}
-	
-	public Servidor(String nomeservidor, String cpf, String rg, double salario, boolean ativo) {
-		super();
-		this.nomeservidor = nomeservidor;
-		this.cpf = cpf;
-		this.rg = rg;
-		this.salario = salario;
-		this.ativo = ativo;
-	}
-	
-	@ManyToOne()
-	@JoinColumn(name = "idfuncao")
-	private Funcao funcao; // necessário fazer os métodos getters e setters dessas funções para poderem retornar as 
-	// chaves estrangeiras quando você fizer uma requisição GET, caso contrário, o sistema não vai saber onde procurar.
-		
-	public Funcao getFuncao() {
-		return funcao;
-	}
-	
-
-	public void setFuncao(Funcao funcao) {
-		this.funcao = funcao;
-	}
-
-	public Integer getIdservidor() {
-		return idservidor;
-	}
-	public void setIdservidor(Integer idservidor) {
-		this.idservidor = idservidor;
-	}
-	public String getNomeservidor() {
-		return nomeservidor;
-	}
-	public void setNomeservidor(String nomeservidor) {
-		this.nomeservidor = nomeservidor;
-	}
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	public String getRg() {
-		return rg;
-	}
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
-	public double getSalario() {
-		return salario;
-	}
-	public void setSalario(double salario) {
-		this.salario = salario;
-	}
-	public boolean isAtivo() {
-		return ativo;
-	}
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
-	
 	@Id
 	@Column(name = "idservidor")
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // outras estratégias precisam de tabelas específicas no Banco de dados
@@ -91,8 +29,84 @@ public class Servidor {
 	
 	@Column(name = "salario")
 	private double salario;
-	
+
 	@Column(name = "ativo")
 	private boolean ativo;
+		
+	@ManyToOne()
+	@JoinColumn(name = "idfuncao")
+	private Funcao funcao; // necessário fazer os métodos getters e setters dessas funções para poderem retornar as 
+	// chaves estrangeiras quando você fizer uma requisição GET, caso contrário, o sistema não vai saber onde procurar.
+
+	public Integer getIdservidor() {
+		return idservidor;
+	}
+	
+	public Servidor() {}
+	
+	public Servidor(Integer idservidor, String nomeservidor, String cpf, String rg, double salario, boolean ativo,
+			Funcao funcao) {
+		super();
+		this.idservidor = idservidor;
+		this.nomeservidor = nomeservidor;
+		this.cpf = cpf;
+		this.rg = rg;
+		this.salario = salario;
+		this.ativo = ativo;
+		this.funcao = funcao;
+	}
+
+	public void setIdservidor(Integer idservidor) {
+		this.idservidor = idservidor;
+	}
+
+	public String getNomeservidor() {
+		return nomeservidor;
+	}
+
+	public void setNomeservidor(String nomeservidor) {
+		this.nomeservidor = nomeservidor;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+	public double getSalario() {
+		return salario;
+	}
+
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
+
+	public Funcao getFuncao() {
+		return funcao;
+	}
+
+	public void setFuncao(Funcao funcao) {
+		this.funcao = funcao;
+	}
 	
 }
