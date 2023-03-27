@@ -17,17 +17,28 @@ public class ServidorService {
 
 	public void addServidor(Servidor servidor) {
 		
-		SaldoServidor sal = new SaldoServidor();
-		
-		servidorRepository.save(servidor);
-		
-		double salario = servidor.getSalario();
-		double saldo = (salario * 30 / 100);
-		
-		sal.setIdsaldo(sal.getIdsaldo());
-		sal.setMatricula(servidor); 
-		sal.setSaldo(saldo);
-		saldoServidorRepository.save(sal);
+		try {
+			SaldoServidor sal = new SaldoServidor();
+			
+			servidorRepository.save(servidor);
+
+			int id = servidor.getIdservidor();
+			double salario = servidor.getSalario();
+			double saldo = (salario * 30 / 100);
+						
+			sal.setIdsaldo(id);
+			sal.setMatricula(servidor); 
+			sal.setSaldo(saldo);
+			saldoServidorRepository.save(sal);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Não foi possível adicionar o servidor.");
+		}
 				
-	}	
+	}
+	
+	
 }
+

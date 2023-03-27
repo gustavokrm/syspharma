@@ -15,6 +15,7 @@ public class SaldoServidor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idsaldo")
 	private int idsaldo;
 	@Column(name = "saldo")
 	private double saldo;

@@ -37,6 +37,7 @@ public class Servidor {
 	@JoinColumn(name = "idfuncao")
 	private Funcao funcao; // necessário fazer os métodos getters e setters dessas funções para poderem retornar as 
 	// chaves estrangeiras quando você fizer uma requisição GET, caso contrário, o sistema não vai saber onde procurar.
+	
 
 	public Integer getIdservidor() {
 		return idservidor;

@@ -24,32 +24,35 @@ public class ComprasService {
 	public void addCompras(Compras compras) {
 		
 		Servidor id = compras.getServidor();
-		double val = compras.getValorcompra();
-		id = compras.getServidor();
+		double val = compras.getValorcompra();	
 		
+		Optional<SaldoServidor> saldo = saldoServidorRepository.findAllByMatricula(id);
+						
 		try {
-			Optional<SaldoServidor> saldo = saldoServidorRepository.findAllByMatricula(id);
 			if(saldo.isPresent()) {
 				SaldoServidor _saldo = saldo.get();
 				double sld =_saldo.getSaldo();
 				if(sld < val) {
-					System.out.println("Saldo insuficiente");
-				} else {
-				double total = sld - val;
-				_saldo.setIdsaldo(_saldo.getIdsaldo());
-				_saldo.setMatricula(id);
-				_saldo.setSaldo(total);
-				comprasRepository.save(compras);
-				saldoServidorRepository.save(_saldo);
-				}
+						throw new Exception("Não foi possível realizar a compra, "
+								+ "pois o saldo é insuficiente. Verifique o saldo do servidor"
+								+ "e realize a compra fora do convênio.");
+					} else {
+						double total = sld - val;
+						_saldo.setIdsaldo(_saldo.getIdsaldo());
+						_saldo.setMatricula(id);
+						_saldo.setSaldo(total);
+						comprasRepository.save(compras);
+						saldoServidorRepository.save(_saldo);
+					}
+				
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			System.out.println("Não foi possível realizar a compra."
+					+ "Ou o sistema não encontrou saldo associado a esse servidor ou"
+					+ "o saldo do servidor é insuficiente. Verifique o saldo do servidor"
+					+ "e tente novamente.");
 			e.printStackTrace();
 		}
-		
-		
-		
 	}
-	
 }

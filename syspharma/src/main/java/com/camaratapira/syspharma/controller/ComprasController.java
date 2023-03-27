@@ -74,10 +74,8 @@ public class ComprasController {
     @PostMapping("/compras/realizarcompra")
     public ResponseEntity<Compras> createCompras(@RequestBody Compras compras){
 		try {
-			
 			comprasService.addCompras(compras);
-			
-			return new ResponseEntity<>(HttpStatus.CREATED);
+			return new ResponseEntity<>(compras, HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<Compras>(null, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);

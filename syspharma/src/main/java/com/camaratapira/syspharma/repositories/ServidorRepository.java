@@ -6,5 +6,6 @@ import com.camaratapira.syspharma.entity.Servidor;
 
 public interface ServidorRepository extends JpaRepository<Servidor, Integer>{
 	List<Servidor> findByidservidor(int idservidor);
-	List<Servidor> findBynomeservidor(String nomeservidor);
+	List<Servidor> findBynomeservidorContaining(String nomeservidor);
+	
 }
