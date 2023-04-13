@@ -24,52 +24,42 @@ public class Compras {
     @Column(name = "datacompra")
     private Timestamp datacompra;
 
-    private String nomecompra;
+    public Compras(){}
 
-    public String getNomecompra() {
-        return nomecompra;
-    }
-
-    public void setNomecompra(String nomecompra) {
-        this.nomecompra = nomecompra;
-    }
     @ManyToOne
     @JoinColumn(name = "servidor_idservidor")
-    private Servidor servidor;
+    private Servidor servidor_idservidor;
 
+    public Servidor getServidor_idservidor() {
+        return servidor_idservidor;
+    }
+
+    public void setServidor_idservidor(Servidor servidor_idservidor) {
+        this.servidor_idservidor = servidor_idservidor;
+    }
     @ManyToOne
     @JoinColumn(name = "dependentes_iddependente")
-    private Dependentes dependentes;
+    private Dependentes dependentes_iddependentes;
 
+    public Dependentes getDependentes_iddependentes() {
+        return dependentes_iddependentes;
+    }
+
+    public void setDependentes_iddependentes(Dependentes dependentes_iddependentes) {
+        this.dependentes_iddependentes = dependentes_iddependentes;
+    }
+    
     @ManyToOne
     @JoinColumn(name = "farmacia_idfarmacia")
-    private Farmacia farmacia;
+    private Farmacia farmacia_idfarmacia;
 
-    public Servidor getServidor() {
-        return servidor;
+    public Farmacia getFarmacia_idfarmacia() {
+        return farmacia_idfarmacia;
     }
 
-    public void setServidor(Servidor servidor) {
-        this.servidor = servidor;
+    public void setFarmacia_idfarmacia(Farmacia farmacia_idfarmacia) {
+        this.farmacia_idfarmacia = farmacia_idfarmacia;
     }
-
-    public Dependentes getDependentes() {
-        return dependentes;
-    }
-
-    public void setDependentes(Dependentes dependentes) {
-        this.dependentes = dependentes;
-    }
-
-    public Farmacia getFarmacia() {
-        return farmacia;
-    }
-
-    public void setFarmacia(Farmacia farmacia) {
-        this.farmacia = farmacia;
-    }
-
-    public Compras(){}
 
     public int getIdcompras() {
         return idcompras;
