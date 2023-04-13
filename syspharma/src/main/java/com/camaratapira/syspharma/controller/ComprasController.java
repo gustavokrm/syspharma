@@ -1,7 +1,6 @@
 package com.camaratapira.syspharma.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,6 +70,7 @@ public class ComprasController {
    
     // When using @JsonIgnore annotation, spring boot gets confused and can't find anything, and it throws an error
     
+   
     @PostMapping("/compras/realizarcompra")
     public ResponseEntity<Compras> createCompras(@RequestBody Compras compras){
 		try {
@@ -78,7 +78,7 @@ public class ComprasController {
 			return new ResponseEntity<>(compras, HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<Compras>(null, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Compras>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 	}

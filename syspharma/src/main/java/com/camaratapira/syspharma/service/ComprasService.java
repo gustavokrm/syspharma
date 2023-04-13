@@ -10,7 +10,6 @@ import com.camaratapira.syspharma.entity.Compras;
 import com.camaratapira.syspharma.entity.SaldoServidor;
 import com.camaratapira.syspharma.entity.Servidor;
 
-
 @Service
 public class ComprasService {
 	
@@ -27,15 +26,14 @@ public class ComprasService {
 		double val = compras.getValorcompra();	
 		
 		Optional<SaldoServidor> saldo = saldoServidorRepository.findAllByMatricula(id);
-						
+		
 		try {
 			if(saldo.isPresent()) {
 				SaldoServidor _saldo = saldo.get();
 				double sld =_saldo.getSaldo();
 				if(sld < val) {
-						throw new Exception("Não foi possível realizar a compra, "
-								+ "pois o saldo é insuficiente. Verifique o saldo do servidor"
-								+ "e realize a compra fora do convênio.");
+						System.out.println("Não foi possível realizar a compra, pois o saldo"
+								+ "é insuficiente. Realize a compra fora do convênio.");
 					} else {
 						double total = sld - val;
 						_saldo.setIdsaldo(_saldo.getIdsaldo());
@@ -44,7 +42,6 @@ public class ComprasService {
 						comprasRepository.save(compras);
 						saldoServidorRepository.save(_saldo);
 					}
-				
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
