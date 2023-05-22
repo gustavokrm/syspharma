@@ -43,8 +43,7 @@ public class ComprasController {
 			
 		}
 	}
-    
-    
+        
     @GetMapping("/compras/listar/{idcompras}")
     public ResponseEntity<List<Compras>> getcomprasById(@PathVariable("idcompras") int idcompras){
 		
