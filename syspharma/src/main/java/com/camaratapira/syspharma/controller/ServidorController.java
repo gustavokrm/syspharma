@@ -79,11 +79,11 @@ public class ServidorController {
 			else
 				return new ResponseEntity<>(servidor, HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
+	// TODO melhorar esse método
 	// adiciona um novo servidor e também adiciona seu saldo: 30% do valor do salário, na tabela saldoservidor
 	@PostMapping("/servidor/criarservidor")
 	public ResponseEntity<Servidor> createServidor(@RequestBody Servidor servidor){

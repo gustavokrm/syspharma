@@ -70,6 +70,8 @@ public class ComprasController {
     // When using @JsonIgnore annotation, spring boot gets confused and can't find anything, and it throws an error
     
    
+	// TODO compras não podem ser feitas se o servidor estiver inativo
+	
     @PostMapping("/compras/realizarcompra")
     public ResponseEntity<Compras> createCompras(@RequestBody Compras compras){
 		try {

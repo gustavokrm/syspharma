@@ -22,11 +22,10 @@ public class ServidorService {
 			
 			servidorRepository.save(servidor);
 
-			int id = servidor.getIdservidor();
 			double salario = servidor.getSalario();
 			double saldo = (salario * 30 / 100);
 						
-			sal.setIdsaldo(id);
+			sal.setIdsaldo(sal.getIdsaldo()); // idsaldo é surrogate key
 			sal.setMatricula(servidor); 
 			sal.setSaldo(saldo);
 			saldoServidorRepository.save(sal);
