@@ -58,7 +58,7 @@ public class ComprasController {
     // It is necessary to pass the entire servidor entity as a parameter so that spring boot finds it
     // or it will return a 404 error
     
-    @GetMapping("/compras/listarservidor/{idservidor}")    
+    @GetMapping("/compras/listarporservidor/{idservidor}")    
     public ResponseEntity<List<Compras>> getcomprasByIdServidor(@PathVariable("idservidor") Servidor idservidor){
     	List<Compras> comprasData = comprasRepository.findAllByIdservidor(idservidor);
     	if(comprasData.isEmpty())

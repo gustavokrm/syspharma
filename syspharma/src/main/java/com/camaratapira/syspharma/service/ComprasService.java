@@ -24,10 +24,11 @@ public class ComprasService {
 		
 		Servidor id = compras.getServidor();
 		double val = compras.getValorcompra();	
-		
+				
 		Optional<SaldoServidor> saldo = saldoServidorRepository.findAllByMatricula(id);
-		
+
 		try {
+			
 			if(saldo.isPresent()) {
 				SaldoServidor _saldo = saldo.get();
 				double sld =_saldo.getSaldo();
@@ -42,14 +43,17 @@ public class ComprasService {
 						comprasRepository.save(compras);
 						saldoServidorRepository.save(_saldo);
 					}
+			} else {
+				System.out.println("Servidor não encontrado");
 			}
+		
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			System.out.println("Não foi possível realizar a compra."
 					+ "Ou o sistema não encontrou saldo associado a esse servidor ou"
 					+ "o saldo do servidor é insuficiente. Verifique o saldo do servidor"
 					+ "e tente novamente.");
 			e.printStackTrace();
 		}
-	}
+	}  
 }
