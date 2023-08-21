@@ -23,11 +23,13 @@ public class ComprasService {
 	public void addCompras(Compras compras) {
 		
 		Servidor id = compras.getServidor();
+		
 		double val = compras.getValorcompra();	
 				
 		Optional<SaldoServidor> saldo = saldoServidorRepository.findAllByMatricula(id);
-
+		
 		try {
+			
 			
 			if(saldo.isPresent()) {
 				SaldoServidor _saldo = saldo.get();
